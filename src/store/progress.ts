@@ -33,11 +33,16 @@ export const useProgress = create<ProgressState>()(
     (set) => ({
       ...initial(),
       completeLevel: (id, stars, xp) =>
-        set((s) => ({
-          stars: { ...s.stars, [id]: Math.max(stars, s.stars[id] ?? 0) },
-          xp: s.xp + xp,
-          ...bumpStreak(s, dayKey(new Date())),
-        })),
+        set((s) => {
+          // Pick only the streak fields: bumpStreak returns the whole state when nothing changes.
+          const { streak, lastDay } = bumpStreak(s, dayKey(new Date()))
+          return {
+            stars: { ...s.stars, [id]: Math.max(stars, s.stars[id] ?? 0) },
+            xp: s.xp + xp,
+            streak,
+            lastDay,
+          }
+        }),
       failLevel: () => set((s) => loseHeart(s, Date.now())),
       syncHearts: () =>
         set((s) => {
