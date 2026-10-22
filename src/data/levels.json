@@ -1,0 +1,447 @@
+{
+  "units": [
+    {
+      "id": 1,
+      "title": "First Pieces",
+      "color": "#58CC02",
+      "colorDark": "#58A700"
+    },
+    {
+      "id": 2,
+      "title": "Mix & Match",
+      "color": "#1CB0F6",
+      "colorDark": "#1899D6"
+    },
+    {
+      "id": 3,
+      "title": "Slide Rules",
+      "color": "#CE82FF",
+      "colorDark": "#A568CC"
+    },
+    {
+      "id": 4,
+      "title": "Twist & Turn",
+      "color": "#FF9600",
+      "colorDark": "#CC7800"
+    },
+    {
+      "id": 5,
+      "title": "Master Mosaic",
+      "color": "#FF4B4B",
+      "colorDark": "#EA2B2B"
+    }
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "unit": 1,
+      "index": 1,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 3,
+      "image": "p01",
+      "rotation": false,
+      "reference": "full",
+      "parMoves": 11,
+      "parTime": 56
+    },
+    {
+      "id": 2,
+      "unit": 1,
+      "index": 2,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 3,
+      "image": "p02",
+      "rotation": false,
+      "reference": "full",
+      "parMoves": 11,
+      "parTime": 56
+    },
+    {
+      "id": 3,
+      "unit": 1,
+      "index": 3,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 3,
+      "image": "p03",
+      "rotation": false,
+      "reference": "full",
+      "parMoves": 11,
+      "parTime": 56
+    },
+    {
+      "id": 4,
+      "unit": 1,
+      "index": 4,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 3,
+      "image": "p04",
+      "rotation": false,
+      "reference": "full",
+      "parMoves": 11,
+      "parTime": 56
+    },
+    {
+      "id": 5,
+      "unit": 1,
+      "index": 5,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 3,
+      "image": "p05",
+      "rotation": false,
+      "reference": "full",
+      "parMoves": 11,
+      "parTime": 56
+    },
+    {
+      "id": 6,
+      "unit": 1,
+      "index": 6,
+      "boss": true,
+      "mode": "jigsaw",
+      "grid": 3,
+      "image": "p06",
+      "rotation": false,
+      "reference": "half",
+      "parMoves": 10,
+      "parTime": 48
+    },
+    {
+      "id": 7,
+      "unit": 2,
+      "index": 1,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 4,
+      "image": "p07",
+      "rotation": false,
+      "reference": "half",
+      "parMoves": 20,
+      "parTime": 87
+    },
+    {
+      "id": 8,
+      "unit": 2,
+      "index": 2,
+      "boss": false,
+      "mode": "swap",
+      "grid": 4,
+      "image": "p08",
+      "rotation": false,
+      "reference": "half",
+      "parMoves": 18,
+      "parTime": 71
+    },
+    {
+      "id": 9,
+      "unit": 2,
+      "index": 3,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 4,
+      "image": "p09",
+      "rotation": false,
+      "reference": "half",
+      "parMoves": 20,
+      "parTime": 87
+    },
+    {
+      "id": 10,
+      "unit": 2,
+      "index": 4,
+      "boss": false,
+      "mode": "swap",
+      "grid": 4,
+      "image": "p10",
+      "rotation": false,
+      "reference": "half",
+      "parMoves": 18,
+      "parTime": 71
+    },
+    {
+      "id": 11,
+      "unit": 2,
+      "index": 5,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 4,
+      "image": "p11",
+      "rotation": false,
+      "reference": "half",
+      "parMoves": 20,
+      "parTime": 87
+    },
+    {
+      "id": 12,
+      "unit": 2,
+      "index": 6,
+      "boss": true,
+      "mode": "swap",
+      "grid": 4,
+      "image": "p12",
+      "rotation": false,
+      "reference": "half",
+      "parMoves": 16,
+      "parTime": 60
+    },
+    {
+      "id": 13,
+      "unit": 3,
+      "index": 1,
+      "boss": false,
+      "mode": "swap",
+      "grid": 4,
+      "image": "p13",
+      "rotation": false,
+      "reference": "toggle",
+      "parMoves": 18,
+      "parTime": 71
+    },
+    {
+      "id": 14,
+      "unit": 3,
+      "index": 2,
+      "boss": false,
+      "mode": "sliding",
+      "grid": 3,
+      "image": "p14",
+      "rotation": false,
+      "reference": "toggle",
+      "parMoves": 70,
+      "parTime": 100
+    },
+    {
+      "id": 15,
+      "unit": 3,
+      "index": 3,
+      "boss": false,
+      "mode": "swap",
+      "grid": 5,
+      "image": "p15",
+      "rotation": false,
+      "reference": "toggle",
+      "parMoves": 28,
+      "parTime": 103
+    },
+    {
+      "id": 16,
+      "unit": 3,
+      "index": 4,
+      "boss": false,
+      "mode": "sliding",
+      "grid": 3,
+      "image": "p16",
+      "rotation": false,
+      "reference": "toggle",
+      "parMoves": 70,
+      "parTime": 100
+    },
+    {
+      "id": 17,
+      "unit": 3,
+      "index": 5,
+      "boss": false,
+      "mode": "swap",
+      "grid": 5,
+      "image": "p17",
+      "rotation": false,
+      "reference": "toggle",
+      "parMoves": 28,
+      "parTime": 103
+    },
+    {
+      "id": 18,
+      "unit": 3,
+      "index": 6,
+      "boss": true,
+      "mode": "sliding",
+      "grid": 3,
+      "image": "p18",
+      "rotation": false,
+      "reference": "toggle",
+      "parMoves": 63,
+      "parTime": 85
+    },
+    {
+      "id": 19,
+      "unit": 4,
+      "index": 1,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 5,
+      "image": "p19",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 69,
+      "parTime": 195
+    },
+    {
+      "id": 20,
+      "unit": 4,
+      "index": 2,
+      "boss": false,
+      "mode": "swap",
+      "grid": 5,
+      "image": "p20",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 65,
+      "parTime": 155
+    },
+    {
+      "id": 21,
+      "unit": 4,
+      "index": 3,
+      "boss": false,
+      "mode": "sliding",
+      "grid": 3,
+      "image": "p21",
+      "rotation": false,
+      "reference": "timed",
+      "parMoves": 70,
+      "parTime": 100
+    },
+    {
+      "id": 22,
+      "unit": 4,
+      "index": 4,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 6,
+      "image": "p22",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 99,
+      "parTime": 274
+    },
+    {
+      "id": 23,
+      "unit": 4,
+      "index": 5,
+      "boss": false,
+      "mode": "swap",
+      "grid": 6,
+      "image": "p23",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 94,
+      "parTime": 217
+    },
+    {
+      "id": 24,
+      "unit": 4,
+      "index": 6,
+      "boss": true,
+      "mode": "jigsaw",
+      "grid": 6,
+      "image": "p24",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 89,
+      "parTime": 233,
+      "limit": {
+        "time": 466
+      }
+    },
+    {
+      "id": 25,
+      "unit": 5,
+      "index": 1,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 6,
+      "image": "p25",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 99,
+      "parTime": 274,
+      "limit": {
+        "time": 548
+      }
+    },
+    {
+      "id": 26,
+      "unit": 5,
+      "index": 2,
+      "boss": false,
+      "mode": "swap",
+      "grid": 7,
+      "image": "p26",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 127,
+      "parTime": 289,
+      "limit": {
+        "time": 578
+      }
+    },
+    {
+      "id": 27,
+      "unit": 5,
+      "index": 3,
+      "boss": false,
+      "mode": "sliding",
+      "grid": 4,
+      "image": "p27",
+      "rotation": false,
+      "reference": "timed",
+      "parMoves": 180,
+      "parTime": 360,
+      "limit": {
+        "moves": 360
+      }
+    },
+    {
+      "id": 28,
+      "unit": 5,
+      "index": 4,
+      "boss": false,
+      "mode": "jigsaw",
+      "grid": 7,
+      "image": "p28",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 135,
+      "parTime": 368,
+      "limit": {
+        "time": 736
+      }
+    },
+    {
+      "id": 29,
+      "unit": 5,
+      "index": 5,
+      "boss": false,
+      "mode": "swap",
+      "grid": 8,
+      "image": "p29",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 166,
+      "parTime": 373,
+      "limit": {
+        "time": 746
+      }
+    },
+    {
+      "id": 30,
+      "unit": 5,
+      "index": 6,
+      "boss": true,
+      "mode": "jigsaw",
+      "grid": 8,
+      "image": "p30",
+      "rotation": true,
+      "reference": "timed",
+      "parMoves": 158,
+      "parTime": 405,
+      "limit": {
+        "time": 810
+      }
+    }
+  ]
+}

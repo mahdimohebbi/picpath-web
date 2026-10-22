@@ -1,0 +1,47 @@
+.path {
+  padding: 16px 16px 40px;
+}
+
+.unit + .unit {
+  margin-top: 32px;
+}
+
+.banner {
+  position: sticky;
+  top: calc(var(--bar-height) + 8px);
+  z-index: 5;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  color: #fff;
+  margin-bottom: 64px;
+}
+
+.banner small {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+.banner h2 {
+  font-size: 21px;
+}
+
+.nodes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.slot {
+  scroll-margin: 140px;
+}
+
+.mascot {
+  position: absolute;
+  top: 38%;
+  left: 6%;
+  pointer-events: none;
+}

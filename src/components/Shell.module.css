@@ -1,0 +1,9 @@
+.shell {
+  max-width: var(--max-width);
+  min-height: 100%;
+  margin: 0 auto;
+}
+
+.main {
+  padding-bottom: calc(84px + env(safe-area-inset-bottom));
+}
