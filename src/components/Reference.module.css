@@ -6,7 +6,8 @@
   border-radius: 12px;
   overflow: hidden;
   background: var(--surface);
-  border: 2px solid var(--border);
+  border: var(--outline);
+  box-shadow: var(--pop);
 }
 
 .ref img {
@@ -40,7 +41,7 @@
   display: grid;
   place-items: center;
   font-size: 32px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-muted);
 }
 
@@ -50,7 +51,7 @@
   bottom: 0;
   height: 4px;
   width: 100%;
-  background: var(--blue);
+  background: var(--accent);
   transform-origin: left;
   animation: shrink 5s linear forwards;
 }

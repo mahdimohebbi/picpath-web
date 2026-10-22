@@ -14,18 +14,18 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .item {
   position: relative;
   aspect-ratio: 1;
   padding: 0;
-  border: none;
+  border: var(--outline);
   border-radius: 14px;
   overflow: hidden;
   background: var(--surface);
-  box-shadow: 0 4px 0 var(--border);
+  box-shadow: var(--pop);
   cursor: pointer;
 }
 
@@ -42,8 +42,9 @@
   bottom: 6px;
   display: flex;
   padding: 2px 4px;
-  border-radius: 8px;
-  background: rgb(0 0 0 / 0.45);
+  border: 2px solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
 }
 
 .locked {
@@ -52,7 +53,8 @@
   justify-items: center;
   gap: 2px;
   color: var(--text-muted);
-  border: 2px dashed var(--border);
+  border: 2px dashed var(--locked-deep);
+  background: var(--locked);
   box-shadow: none;
   cursor: default;
 }
@@ -74,7 +76,9 @@
 .viewer img {
   width: 100%;
   max-width: 448px;
+  border: 3px solid var(--edge);
   border-radius: 16px;
+  rotate: -2deg;
 }
 
 .viewerActions {

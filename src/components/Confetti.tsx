@@ -1,7 +1,7 @@
 import { useMemo, type CSSProperties } from 'react'
 import styles from './Confetti.module.css'
 
-const COLORS = ['#58cc02', '#1cb0f6', '#ffc800', '#ff4b4b', '#ce82ff', '#ff9600']
+const COLORS = ['#ff6b57', '#2ec4b6', '#ffc53d', '#8e7cff', '#ff5fa2', '#1e1a2b']
 
 /** One-shot DOM confetti burst; pieces fall once and stay hidden afterwards. */
 export function Confetti({ count = 90 }: { count?: number }) {

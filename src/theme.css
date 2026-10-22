@@ -1,32 +1,41 @@
 :root {
-  --green: #58cc02;
-  --green-dark: #58a700;
-  --blue: #1cb0f6;
-  --blue-dark: #1899d6;
-  --gold: #ffc800;
-  --gold-dark: #e5a500;
-  --red: #ff4b4b;
-  --red-dark: #ea2b2b;
-  --locked: #e5e5e5;
-  --locked-dark: #afafaf;
-  --purple: #ce82ff;
-  --purple-dark: #a568cc;
-  --orange: #ff9600;
-  --orange-dark: #cc7800;
+  /* "Sticker & ink" palette: bright fills, dark ink outlines, warm paper */
+  --primary: #ff6b57;
+  --primary-deep: #e04e3a;
+  --accent: #2ec4b6;
+  --accent-deep: #1e9a8f;
+  --star: #ffc53d;
+  --star-deep: #e0a21c;
+  --danger: #f0435a;
+  --danger-deep: #c92a41;
+  --plum: #8e7cff;
+  --plum-deep: #6d5ae6;
+  --flame: #ff8a3d;
+  --flame-deep: #e06a1c;
+  --locked: #efe5d6;
+  --locked-deep: #c9baa4;
 
-  --bg: #ffffff;
-  --surface: #f7f7f7;
-  --border: #e5e5e5;
-  --text: #3c3c3c;
-  --text-muted: #777777;
+  --bg: #fff7ec;
+  --surface: #ffffff;
+  --surface-2: #f6ecdd;
+  --line: #e8dcc8;
+  --ink: #1e1a2b;
+  /* outlines and hard shadows; separate from --ink so dark mode can use chalk-light edges */
+  --edge: #1e1a2b;
+  --shadow: #1e1a2b;
+  --on-color: #1e1a2b;
+  --text: #1e1a2b;
+  --text-muted: #6e6680;
 
   --radius: 16px;
+  --outline: 2.5px solid var(--edge);
+  --pop: 3px 3px 0 var(--shadow);
   --max-width: 480px;
   --bar-height: 60px;
 
   color-scheme: light dark;
-  font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-weight: 700;
+  font-family: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 500;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -35,13 +44,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #131f24;
-    --surface: #1f2d33;
-    --border: #37464f;
-    --text: #f1f7fb;
-    --text-muted: #8a9ba3;
-    --locked: #37464f;
-    --locked-dark: #2a383f;
+    --bg: #17131f;
+    --surface: #221c2e;
+    --surface-2: #2b2439;
+    --line: #3b334b;
+    --edge: #e9dfcf;
+    --shadow: rgb(233 223 207 / 0.35);
+    --text: #f6eee2;
+    --text-muted: #a69db6;
+    --locked: #2e2740;
+    --locked-deep: #4b4260;
   }
 }
 
@@ -71,6 +83,6 @@ button {
 h1,
 h2,
 h3 {
-  font-weight: 800;
+  font-weight: 700;
   margin: 0;
 }

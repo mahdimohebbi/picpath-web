@@ -1,15 +1,15 @@
 import type { ButtonHTMLAttributes } from 'react'
-import styles from './DuoButton.module.css'
+import styles from './PopButton.module.css'
 
-export type DuoVariant = 'green' | 'blue' | 'gold' | 'red' | 'locked' | 'ghost'
+export type PopVariant = 'primary' | 'accent' | 'star' | 'danger' | 'locked' | 'ghost'
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: DuoVariant
+  variant?: PopVariant
   size?: 'md' | 'lg'
   block?: boolean
 }
 
-export function DuoButton({ variant = 'green', size = 'md', block, className, ...rest }: Props) {
+export function PopButton({ variant = 'primary', size = 'md', block, className, ...rest }: Props) {
   const cls = [styles.btn, styles[variant], styles[size], block && styles.block, className]
     .filter(Boolean)
     .join(' ')

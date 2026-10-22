@@ -9,7 +9,7 @@
   padding: 0 20px;
   padding-top: env(safe-area-inset-top);
   background: var(--bg);
-  border-bottom: 2px solid var(--border);
+  border-bottom: var(--outline);
 }
 
 .stat {
@@ -17,8 +17,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .timer {

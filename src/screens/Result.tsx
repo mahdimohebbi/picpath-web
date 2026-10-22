@@ -1,6 +1,6 @@
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Confetti } from '../components/Confetti'
-import { DuoButton } from '../components/DuoButton'
+import { PopButton } from '../components/PopButton'
 import { FlameIcon, StarIcon } from '../components/Icons'
 import { Mascot } from '../components/Mascot'
 import { getLevel, imageUrl, levels } from '../data/levels'
@@ -46,9 +46,9 @@ function ResultView({ levelId, boss, image, result }: { levelId: number; boss: b
       </div>
 
       <div className={styles.cards}>
-        <Card label={boss ? 'Boss XP ×2' : 'Total XP'} color="var(--gold)" value={`+${xp}`} />
-        <Card label="Time" color="var(--blue)" value={formatMs(result.seconds * 1000)} />
-        <Card label="Moves" color="var(--green)" value={String(result.moves)} />
+        <Card label={boss ? 'Boss XP ×2' : 'Total XP'} color="var(--star)" value={`+${xp}`} />
+        <Card label="Time" color="var(--accent)" value={formatMs(result.seconds * 1000)} />
+        <Card label="Moves" color="var(--primary)" value={String(result.moves)} />
       </div>
 
       {result.hints > 0 && (
@@ -63,12 +63,12 @@ function ResultView({ levelId, boss, image, result }: { levelId: number; boss: b
       )}
 
       <div className={styles.actions}>
-        <DuoButton block size="lg" onClick={() => navigate('/', { replace: true })}>
+        <PopButton block size="lg" onClick={() => navigate('/', { replace: true })}>
           Continue
-        </DuoButton>
-        <DuoButton block variant="ghost" onClick={() => navigate(`/play/${levelId}`, { replace: true })}>
+        </PopButton>
+        <PopButton block variant="ghost" onClick={() => navigate(`/play/${levelId}`, { replace: true })}>
           Replay
-        </DuoButton>
+        </PopButton>
       </div>
     </div>
   )
@@ -76,9 +76,9 @@ function ResultView({ levelId, boss, image, result }: { levelId: number; boss: b
 
 function Card({ label, value, color }: { label: string; value: string; color: string }) {
   return (
-    <div className={styles.card} style={{ borderColor: color, background: color }}>
+    <div className={styles.card} style={{ background: color }}>
       <small>{label}</small>
-      <strong style={{ color }}>{value}</strong>
+      <strong>{value}</strong>
     </div>
   )
 }

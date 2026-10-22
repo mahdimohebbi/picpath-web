@@ -9,8 +9,8 @@ function svg(size: number, props: SVGProps<SVGSVGElement>) {
 export function FlameIcon({ size = 24, ...p }: IconProps) {
   return (
     <svg {...svg(size, p)}>
-      <path fill="#ff9600" d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-4-1-6 1-9z" />
-      <path fill="#ffc800" d="M12 12c1 2 3 3 3 5a3 3 0 0 1-6 0c0-1.5 1-2.5 1.5-3 .2 1 .8 1.5 1.5 1.5 0-1.5-.5-2.5 0-3.5z" />
+      <path fill="#ff8a3d" stroke="#1e1a2b" strokeWidth="1.4" strokeLinejoin="round" d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-4-1-6 1-9z" />
+      <path fill="#ffc53d" d="M12 12c1 2 3 3 3 5a3 3 0 0 1-6 0c0-1.5 1-2.5 1.5-3 .2 1 .8 1.5 1.5 1.5 0-1.5-.5-2.5 0-3.5z" />
     </svg>
   )
 }
@@ -18,7 +18,7 @@ export function FlameIcon({ size = 24, ...p }: IconProps) {
 export function HeartIcon({ size = 24, ...p }: IconProps) {
   return (
     <svg {...svg(size, p)}>
-      <path fill="#ff4b4b" d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" />
+      <path fill="#f0435a" stroke="#1e1a2b" strokeWidth="1.4" strokeLinejoin="round" d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" />
       <path fill="#fff" opacity=".5" d="M7.5 7.5a2 2 0 0 1 2-1" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   )
@@ -27,8 +27,8 @@ export function HeartIcon({ size = 24, ...p }: IconProps) {
 export function XpIcon({ size = 24, ...p }: IconProps) {
   return (
     <svg {...svg(size, p)}>
-      <path fill="#1cb0f6" d="M12 2l8 5v10l-8 5-8-5V7z" />
-      <path fill="#fff" d="M13 6l-4 7h3l-1 5 4-7h-3z" />
+      <path fill="#2ec4b6" stroke="#1e1a2b" strokeWidth="1.4" strokeLinejoin="round" d="M12 2l8 5v10l-8 5-8-5V7z" />
+      <path fill="#1e1a2b" d="M13 6l-4 7h3l-1 5 4-7h-3z" />
     </svg>
   )
 }
@@ -37,8 +37,8 @@ export function StarIcon({ size = 24, filled = true, ...p }: IconProps & { fille
   return (
     <svg {...svg(size, p)}>
       <path
-        fill={filled ? '#ffc800' : 'var(--locked)'}
-        stroke={filled ? '#e5a500' : 'var(--locked-dark)'}
+        fill={filled ? '#ffc53d' : 'var(--locked)'}
+        stroke={filled ? '#1e1a2b' : 'var(--locked-deep)'}
         strokeWidth="1.5"
         strokeLinejoin="round"
         d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5-4.9-4.5 6.6-.8z"
@@ -73,8 +73,8 @@ export function ChestIcon({ size = 24, open = false, ...p }: IconProps & { open?
         <path fill="#c67c3b" d="M3 9a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2H3z" />
       )}
       <rect x="3" y="11" width="18" height="9" rx="2" fill="#a0632b" />
-      <rect x="3" y="10" width="18" height="2.5" fill="#ffc800" />
-      <rect x="10" y="9" width="4" height="6" rx="1" fill="#ffc800" />
+      <rect x="3" y="10" width="18" height="2.5" fill="#ffc53d" />
+      <rect x="10" y="9" width="4" height="6" rx="1" fill="#ffc53d" stroke="#1e1a2b" strokeWidth="1" />
     </svg>
   )
 }
@@ -122,7 +122,7 @@ export function ProfileIcon({ size = 24, ...p }: IconProps) {
 export function BulbIcon({ size = 24, ...p }: IconProps) {
   return (
     <svg {...svg(size, p)}>
-      <path fill="#ffc800" d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" />
+      <path fill="#ffc53d" stroke="#1e1a2b" strokeWidth="1.4" d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" />
       <rect x="8.5" y="18" width="7" height="3" rx="1.5" fill="#afafaf" />
     </svg>
   )

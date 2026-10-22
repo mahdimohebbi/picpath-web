@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { DuoButton } from '../components/DuoButton'
+import { PopButton } from '../components/PopButton'
 import { CloseIcon, LockIcon, StarIcon } from '../components/Icons'
 import { imageUrl, levels } from '../data/levels'
 import type { Level } from '../game/engine'
@@ -46,9 +46,9 @@ export function Gallery() {
           </button>
           <img src={imageUrl(open.image)} alt={`Picture ${open.id}`} onClick={(e) => e.stopPropagation()} />
           <div className={styles.viewerActions} onClick={(e) => e.stopPropagation()}>
-            <DuoButton block size="lg" onClick={() => navigate(`/play/${open.id}`)}>
+            <PopButton block size="lg" onClick={() => navigate(`/play/${open.id}`)}>
               Play again
-            </DuoButton>
+            </PopButton>
           </div>
         </div>
       )}

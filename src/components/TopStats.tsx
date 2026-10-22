@@ -13,15 +13,15 @@ type Props = {
 export function TopStats({ streak, xp, hearts, maxHearts, heartTimer }: Props) {
   return (
     <header className={styles.bar}>
-      <span className={styles.stat} style={{ color: streak > 0 ? 'var(--orange)' : 'var(--text-muted)' }} title="Day streak">
+      <span className={styles.stat} style={{ color: streak > 0 ? undefined : 'var(--text-muted)' }} title="Day streak">
         <FlameIcon style={{ filter: streak > 0 ? undefined : 'grayscale(1)' }} />
         {streak}
       </span>
-      <span className={styles.stat} style={{ color: 'var(--blue)' }} title="Total XP">
+      <span className={styles.stat} title="Total XP">
         <XpIcon />
         {xp}
       </span>
-      <span className={styles.stat} style={{ color: 'var(--red)' }} title={`Hearts (max ${maxHearts})`}>
+      <span className={styles.stat} title={`Hearts (max ${maxHearts})`}>
         <HeartIcon />
         {hearts}
         {heartTimer && hearts < maxHearts && <small className={styles.timer}>{heartTimer}</small>}

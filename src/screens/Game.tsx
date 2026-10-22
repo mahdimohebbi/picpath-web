@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { DuoButton } from '../components/DuoButton'
+import { PopButton } from '../components/PopButton'
 import { BulbIcon, CloseIcon, HeartIcon } from '../components/Icons'
 import { Mascot } from '../components/Mascot'
 import { Reference } from '../components/Reference'
@@ -111,9 +111,9 @@ function Play({ level, onRetry }: { level: Level; onRetry: () => void }) {
           This level has a {level.limit?.time ? 'time' : 'move'} limit. Next heart in{' '}
           {formatMs(nextHeartIn({ hearts, heartsAt }, Date.now()))}.
         </p>
-        <DuoButton block size="lg" onClick={() => navigate('/')}>
+        <PopButton block size="lg" onClick={() => navigate('/')}>
           Back to path
-        </DuoButton>
+        </PopButton>
       </div>
     )
   }
@@ -190,13 +190,13 @@ function Play({ level, onRetry }: { level: Level; onRetry: () => void }) {
             <h2>{level.limit?.time ? "Time's up!" : 'Out of moves!'}</h2>
             <p className={styles.muted}>You lost a heart. {hearts > 0 ? 'Give it another go?' : 'Rest a bit and come back.'}</p>
             {hearts > 0 && (
-              <DuoButton block size="lg" onClick={onRetry}>
+              <PopButton block size="lg" onClick={onRetry}>
                 Try again
-              </DuoButton>
+              </PopButton>
             )}
-            <DuoButton block variant="ghost" onClick={() => navigate('/')}>
+            <PopButton block variant="ghost" onClick={() => navigate('/')}>
               Back to path
-            </DuoButton>
+            </PopButton>
           </div>
         </div>
       )}

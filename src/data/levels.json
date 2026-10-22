@@ -3,32 +3,32 @@
     {
       "id": 1,
       "title": "First Pieces",
-      "color": "#58CC02",
-      "colorDark": "#58A700"
+      "color": "#FF6B57",
+      "colorDark": "#E04E3A"
     },
     {
       "id": 2,
       "title": "Mix & Match",
-      "color": "#1CB0F6",
-      "colorDark": "#1899D6"
+      "color": "#2EC4B6",
+      "colorDark": "#1E9A8F"
     },
     {
       "id": 3,
       "title": "Slide Rules",
-      "color": "#CE82FF",
-      "colorDark": "#A568CC"
+      "color": "#8E7CFF",
+      "colorDark": "#6D5AE6"
     },
     {
       "id": 4,
       "title": "Twist & Turn",
-      "color": "#FF9600",
-      "colorDark": "#CC7800"
+      "color": "#FFC53D",
+      "colorDark": "#E0A21C"
     },
     {
       "id": 5,
       "title": "Master Mosaic",
-      "color": "#FF4B4B",
-      "colorDark": "#EA2B2B"
+      "color": "#FF5FA2",
+      "colorDark": "#E03F84"
     }
   ],
   "levels": [

@@ -9,7 +9,7 @@
   max-width: var(--max-width);
   padding-bottom: env(safe-area-inset-bottom);
   background: var(--bg);
-  border-top: 2px solid var(--border);
+  border-top: var(--outline);
 }
 
 .item {
@@ -21,16 +21,16 @@
   margin: 6px;
   padding: 6px 0;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 14px;
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .active {
-  color: var(--blue);
-  border-color: var(--blue);
-  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  color: var(--on-color);
+  border-color: var(--edge);
+  background: var(--star);
+  box-shadow: 2px 2px 0 var(--shadow);
 }

@@ -1,118 +1,120 @@
 .wrap {
+  --size: 68px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 72px;
+  width: var(--size);
+}
+
+.boss {
+  --size: 84px;
 }
 
 .node {
-  --c: var(--node, var(--green));
-  --c-dark: var(--node-dark, var(--green-dark));
   position: relative;
   display: grid;
   place-items: center;
-  width: 72px;
-  height: 66px;
-  border: none;
-  border-radius: 50%;
-  background: var(--c);
-  color: #fff;
-  box-shadow: 0 7px 0 var(--c-dark);
+  width: var(--size);
+  height: var(--size);
+  padding: 0;
+  border: var(--outline);
+  border-radius: 22px;
+  background: var(--node, var(--primary)) center / cover no-repeat;
+  color: var(--ink);
+  box-shadow: var(--pop);
   cursor: pointer;
   touch-action: manipulation;
-  margin-bottom: 7px;
+  transition:
+    transform 0.08s,
+    box-shadow 0.08s;
 }
 
 .node:active:not(:disabled) {
-  transform: translateY(7px);
+  transform: translate(3px, 3px);
   box-shadow: none;
 }
 
 .node:focus-visible {
-  outline: 3px solid var(--blue);
+  outline: 3px solid var(--accent);
   outline-offset: 6px;
 }
 
 .locked {
-  --c: var(--locked);
-  --c-dark: var(--locked-dark);
-  color: var(--locked-dark);
+  background-color: var(--locked);
+  color: var(--locked-deep);
+  border-style: dashed;
+  border-color: var(--locked-deep);
+  box-shadow: none;
   cursor: not-allowed;
 }
 
+.locked svg {
+  filter: grayscale(1) opacity(0.6);
+}
+
 .completed {
-  --c: var(--gold);
-  --c-dark: var(--gold-dark);
-}
-
-.boss {
-  border-radius: 24px;
-}
-
-.boss.locked svg {
-  filter: grayscale(1) opacity(0.55);
+  background-color: var(--star);
 }
 
 .ring {
   position: absolute;
-  inset: -10px;
-  border-radius: inherit;
-  border: 5px solid var(--c);
-  opacity: 0.6;
-  animation: pulse 1.6s ease-out infinite;
+  inset: -11px;
+  border: 3px dashed var(--node, var(--primary));
+  border-radius: 30px;
+  animation: spin 9s linear infinite;
   pointer-events: none;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(0.92);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1.18);
-    opacity: 0;
+@keyframes spin {
+  to {
+    rotate: 360deg;
   }
 }
 
 .bubble {
   position: absolute;
-  bottom: calc(100% + 12px);
-  padding: 8px 14px;
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg);
-  color: var(--node, var(--green));
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  bottom: calc(100% + 10px);
+  padding: 5px 14px;
+  border: var(--outline);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: 2px 2px 0 var(--shadow);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 15px;
   white-space: nowrap;
   animation: bob 1.4s ease-in-out infinite;
 }
 
-.bubble::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  width: 12px;
-  height: 12px;
-  background: var(--bg);
-  border-right: 2px solid var(--border);
-  border-bottom: 2px solid var(--border);
-  transform: translate(-50%, -6px) rotate(45deg);
-}
-
 @keyframes bob {
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-4px) rotate(-3deg);
   }
 }
 
 .stars {
+  position: absolute;
+  top: calc(var(--size) - 10px);
   display: flex;
-  gap: 2px;
-  margin-top: 2px;
+  gap: 1px;
+  padding: 2px 5px;
+  border: 2px solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.chestBadge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--edge);
+  border-radius: 50%;
+  background: var(--star);
 }
 
 @media (prefers-reduced-motion: reduce) {

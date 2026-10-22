@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { ChestIcon, CheckIcon, LockIcon, StarIcon } from './Icons'
+import { ChestIcon, LockIcon, StarIcon } from './Icons'
 import styles from './PathNode.module.css'
 
 export type NodeState = 'locked' | 'current' | 'completed'
@@ -8,45 +8,52 @@ type Props = {
   state: NodeState
   boss?: boolean
   stars?: number
-  /** Unit color pair used for the current node. */
+  /** Unit color used for the current node. */
   color?: string
-  colorDark?: string
   /** Horizontal offset in px from the path center (zig-zag). */
   offset?: number
+  /** Small tilt in degrees for the sticker look. */
+  tilt?: number
+  /** Rebuilt picture, shown on completed nodes. */
+  image?: string
   label: string
   onClick?: () => void
 }
 
-export function PathNode({ state, boss, stars = 0, color, colorDark, offset = 0, label, onClick }: Props) {
-  const style = {
-    transform: `translateX(${offset}px)`,
-    '--node': color,
-    '--node-dark': colorDark,
-  } as CSSProperties
+export function PathNode({ state, boss, stars = 0, color, offset = 0, tilt = 0, image, label, onClick }: Props) {
+  const style = { transform: `translateX(${offset}px)`, '--node': color } as CSSProperties
+  const showImage = state === 'completed' && image
 
-  let icon
-  if (boss) icon = <ChestIcon size={40} open={state === 'completed'} />
-  else if (state === 'locked') icon = <LockIcon size={30} />
-  else if (state === 'completed') icon = <CheckIcon size={36} />
-  else icon = <StarIcon size={36} />
+  let icon = null
+  if (!showImage) {
+    if (boss) icon = <ChestIcon size={44} />
+    else if (state === 'locked') icon = <LockIcon size={28} />
+    else icon = <StarIcon size={38} />
+  }
 
   return (
-    <div className={styles.wrap} style={style}>
-      {state === 'current' && <div className={styles.bubble}>START</div>}
+    <div className={`${styles.wrap} ${boss ? styles.boss : ''}`} style={style}>
+      {state === 'current' && <div className={styles.bubble}>Start</div>}
       <button
         type="button"
-        className={`${styles.node} ${styles[state]} ${boss ? styles.boss : ''}`}
+        className={`${styles.node} ${styles[state]}`}
+        style={{ rotate: `${tilt}deg`, backgroundImage: showImage ? `url(${image})` : undefined }}
         onClick={onClick}
         disabled={state === 'locked'}
         aria-label={`${label} (${state})`}
       >
         {state === 'current' && <span className={styles.ring} aria-hidden />}
         {icon}
+        {showImage && boss && (
+          <span className={styles.chestBadge}>
+            <ChestIcon size={22} open />
+          </span>
+        )}
       </button>
       {state === 'completed' && (
         <div className={styles.stars} aria-label={`${stars} stars`}>
           {[1, 2, 3].map((n) => (
-            <StarIcon key={n} size={18} filled={n <= stars} />
+            <StarIcon key={n} size={15} filled={n <= stars} />
           ))}
         </div>
       )}

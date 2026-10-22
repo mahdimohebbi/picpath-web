@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DuoButton } from '../components/DuoButton'
+import { PopButton } from '../components/PopButton'
 import { FlameIcon, HeartIcon, PuzzleIcon, StarIcon, XpIcon } from '../components/Icons'
 import { Mascot } from '../components/Mascot'
 import { levels } from '../data/levels'
@@ -27,7 +27,7 @@ export function Profile() {
       <div className={styles.stats}>
         <Stat icon={<FlameIcon size={28} />} value={visibleStreak({ streak, lastDay }, dayKey(new Date()))} label="Day streak" />
         <Stat icon={<XpIcon size={28} />} value={xp} label="Total XP" />
-        <Stat icon={<PuzzleIcon size={28} style={{ color: 'var(--green)' }} />} value={`${done}/${levels.length}`} label="Levels" />
+        <Stat icon={<PuzzleIcon size={28} style={{ color: 'var(--primary)' }} />} value={`${done}/${levels.length}`} label="Levels" />
         <Stat icon={<StarIcon size={28} />} value={`${totalStars}/${levels.length * 3}`} label="Stars" />
         <Stat icon={<HeartIcon size={28} />} value={hearts} label="Hearts" />
       </div>
@@ -43,24 +43,24 @@ export function Profile() {
           <>
             <p>This erases all stars, XP and streak on this device. Are you sure?</p>
             <div className={styles.confirmRow}>
-              <DuoButton variant="ghost" onClick={() => setConfirm(false)}>
+              <PopButton variant="ghost" onClick={() => setConfirm(false)}>
                 Cancel
-              </DuoButton>
-              <DuoButton
-                variant="red"
+              </PopButton>
+              <PopButton
+                variant="danger"
                 onClick={() => {
                   reset()
                   setConfirm(false)
                 }}
               >
                 Reset
-              </DuoButton>
+              </PopButton>
             </div>
           </>
         ) : (
-          <DuoButton block variant="ghost" className={styles.resetBtn} onClick={() => setConfirm(true)}>
+          <PopButton block variant="ghost" className={styles.resetBtn} onClick={() => setConfirm(true)}>
             Reset progress
-          </DuoButton>
+          </PopButton>
         )}
       </div>
 

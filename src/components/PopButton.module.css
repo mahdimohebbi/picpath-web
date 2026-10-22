@@ -1,0 +1,80 @@
+.btn {
+  --c: var(--primary);
+  border: var(--outline);
+  border-radius: 14px;
+  background: var(--c);
+  color: var(--on-color);
+  box-shadow: var(--pop);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  transition:
+    transform 0.08s,
+    box-shadow 0.08s;
+  margin: 0 3px 3px 0;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.btn:disabled {
+  --c: var(--locked);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.md {
+  padding: 11px 20px;
+  font-size: 16px;
+}
+
+.lg {
+  padding: 15px 24px;
+  font-size: 19px;
+}
+
+.block {
+  display: block;
+  width: calc(100% - 3px);
+}
+
+.primary {
+  --c: var(--primary);
+}
+
+.accent {
+  --c: var(--accent);
+}
+
+.star {
+  --c: var(--star);
+}
+
+.danger {
+  --c: var(--danger);
+  color: #fff;
+}
+
+.locked {
+  --c: var(--locked);
+  color: var(--text-muted);
+}
+
+.ghost {
+  --c: var(--surface);
+  color: var(--text);
+}

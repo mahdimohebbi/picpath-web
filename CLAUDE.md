@@ -8,8 +8,8 @@ React Router (HashRouter) · vite-plugin-pwa · Vitest · Pointer Events for all
 No backend, ads, analytics, or extra libraries unless essential.
 
 ## Architecture
-- `src/theme.css` — tokens (colors, radius, shadows), dark mode via `prefers-color-scheme`
-- `src/components/` — DuoButton, PathNode, TopStats, Mascot, Confetti, Shell, BottomNav, Icons (file + `.module.css`)
+- `src/theme.css` — "sticker & ink" tokens: role colors (`--primary` coral, `--accent` teal, `--star`, `--danger`), `--edge`/`--shadow` + `--outline`/`--pop`; dark mode via `prefers-color-scheme`. Font: Fredoka. Keep it visually distinct from Duolingo
+- `src/components/` — PopButton, PathNode, TopStats, Mascot, Confetti, Shell, BottomNav, Icons (file + `.module.css`)
 - `src/components/boards/` — JigsawBoard, SwapBoard, SlidingBoard; share `BoardProps`/`BoardHandle` (hint)
 - `src/lib/` — feedback (sound + vibrate), sound (WebAudio synth), useImage, useCountUp
 - `src/screens/` — Path, Game, Result, Gallery, Profile
