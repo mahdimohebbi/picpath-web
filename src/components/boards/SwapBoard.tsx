@@ -9,7 +9,7 @@ import {
   swapTiles,
   type SwapState,
 } from '../../game/swap'
-import { buzz } from '../../lib/feedback'
+import { feedback } from '../../lib/feedback'
 import { PuzzleTile } from '../PuzzleTile'
 import styles from './Board.module.css'
 import type { BoardHandle, BoardProps } from './types'
@@ -29,7 +29,7 @@ export const SwapBoard = forwardRef<BoardHandle, BoardProps>(function SwapBoard(
     setState(next)
     if (newlyLocked.length) {
       setPopped(new Set(newlyLocked))
-      buzz(20)
+      feedback('snap')
     }
     onProgress(swapLockedCount(next), n * n)
     if (isSwapSolved(next)) onSolved()
@@ -47,6 +47,7 @@ export const SwapBoard = forwardRef<BoardHandle, BoardProps>(function SwapBoard(
 
   function tap(i: number) {
     if (disabled || isLocked(state, i)) return
+    feedback('tap')
     if (selected === null) return setSelected(i)
     if (selected === i) {
       if (!level.rotation) return setSelected(null)

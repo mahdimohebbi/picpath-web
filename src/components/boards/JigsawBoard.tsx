@@ -9,7 +9,7 @@ import {
   rotateTrayPiece,
   type JigsawState,
 } from '../../game/jigsaw'
-import { buzz } from '../../lib/feedback'
+import { feedback } from '../../lib/feedback'
 import { PuzzleTile } from '../PuzzleTile'
 import styles from './Board.module.css'
 import type { BoardHandle, BoardProps } from './types'
@@ -99,6 +99,7 @@ export const JigsawBoard = forwardRef<BoardHandle, BoardProps>(function JigsawBo
     if (p.mode === 'pending') {
       if (level.rotation) {
         onMove()
+        feedback('tap')
         setState(rotateTrayPiece(state, p.id))
       }
       return
@@ -109,11 +110,11 @@ export const JigsawBoard = forwardRef<BoardHandle, BoardProps>(function JigsawBo
     const next = placePiece(state, p.id, cell)
     if (next === state) {
       setFlash({ cell, ok: false, key: Date.now() })
-      buzz([15, 40, 15])
+      feedback('wrong')
       return
     }
     setFlash({ cell, ok: true, key: Date.now() })
-    buzz(20)
+    feedback('snap')
     commit(next)
   }
 

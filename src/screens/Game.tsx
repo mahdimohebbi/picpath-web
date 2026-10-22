@@ -10,6 +10,7 @@ import { SwapBoard } from '../components/boards/SwapBoard'
 import type { BoardHandle, BoardProps } from '../components/boards/types'
 import { getLevel, getUnit, imageUrl, isUnlocked } from '../data/levels'
 import { HINTS_PER_LEVEL, computeStars, computeXp, isOverLimit, type Level, type Mode } from '../game/engine'
+import { feedback } from '../lib/feedback'
 import { useImage } from '../lib/useImage'
 import { formatMs, nextHeartIn, regenHearts } from '../store/meta'
 import { useProgress } from '../store/progress'
@@ -72,6 +73,7 @@ function Play({ level, onRetry }: { level: Level; onRetry: () => void }) {
     if (status === 'playing' && isOverLimit(level, { moves, seconds })) {
       setStatus('failed')
       failLevel()
+      feedback('fail')
     }
   }, [level, moves, seconds, status, failLevel])
 
@@ -83,6 +85,7 @@ function Play({ level, onRetry }: { level: Level; onRetry: () => void }) {
 
   const onSolved = useCallback(() => {
     setStatus('won')
+    feedback('win')
     const s = finalStats.current
     const stars = computeStars(level, s)
     const xp = computeXp(stars, level.boss)

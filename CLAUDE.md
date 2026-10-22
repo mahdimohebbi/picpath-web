@@ -9,11 +9,14 @@ No backend, ads, analytics, or extra libraries unless essential.
 
 ## Architecture
 - `src/theme.css` — tokens (colors, radius, shadows), dark mode via `prefers-color-scheme`
-- `src/components/` — DuoButton, PathNode, TopStats, Mascot, Confetti (one component per file + `.module.css`)
+- `src/components/` — DuoButton, PathNode, TopStats, Mascot, Confetti, Shell, BottomNav, Icons (file + `.module.css`)
+- `src/components/boards/` — JigsawBoard, SwapBoard, SlidingBoard; share `BoardProps`/`BoardHandle` (hint)
+- `src/lib/` — feedback (sound + vibrate), sound (WebAudio synth), useImage, useCountUp
 - `src/screens/` — Path, Game, Result, Gallery, Profile
 - `src/game/` — pure engines, no React: `engine.ts` (types, stars, xp), `jigsaw.ts`, `swap.ts`, `sliding.ts`, `rng.ts`
 - `src/store/progress.ts` — Zustand persisted store (xp, stars, hearts, streak)
-- `src/data/levels.json` — 5 units × 6 levels; level 6 = boss
+- `src/data/levels.json` — 5 units × 6 levels; level 6 = boss; `levels.ts` = selectors/unlock rules
+- `src/store/meta.ts` — pure hearts regen + streak helpers (tested)
 - `public/puzzles/pNN.webp` — 30 images (picsum IDs in `CREDITS.md`)
 
 ## Rules

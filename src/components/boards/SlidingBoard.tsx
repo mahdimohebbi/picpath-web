@@ -8,7 +8,7 @@ import {
   slidingHint,
   type SlidingState,
 } from '../../game/sliding'
-import { buzz } from '../../lib/feedback'
+import { feedback } from '../../lib/feedback'
 import { PuzzleTile } from '../PuzzleTile'
 import styles from './Board.module.css'
 import type { BoardHandle, BoardProps } from './types'
@@ -30,7 +30,7 @@ export const SlidingBoard = forwardRef<BoardHandle, BoardProps>(function Sliding
   useEffect(() => () => clearInterval(timer.current), [])
 
   function commit(next: SlidingState) {
-    if (slidingCorrectCount(next) > slidingCorrectCount(stateRef.current)) buzz(15)
+    feedback(slidingCorrectCount(next) > slidingCorrectCount(stateRef.current) ? 'snap' : 'tap')
     stateRef.current = next
     setState(next)
     onProgress(slidingCorrectCount(next), n * n - 1)
