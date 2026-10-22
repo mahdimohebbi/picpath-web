@@ -5,6 +5,8 @@ import { BulbIcon, CloseIcon, HeartIcon } from '../components/Icons'
 import { Mascot } from '../components/Mascot'
 import { Reference } from '../components/Reference'
 import { JigsawBoard } from '../components/boards/JigsawBoard'
+import { SlidingBoard } from '../components/boards/SlidingBoard'
+import { SwapBoard } from '../components/boards/SwapBoard'
 import type { BoardHandle, BoardProps } from '../components/boards/types'
 import { getLevel, getUnit, imageUrl, isUnlocked } from '../data/levels'
 import { HINTS_PER_LEVEL, computeStars, computeXp, isOverLimit, type Level, type Mode } from '../game/engine'
@@ -15,8 +17,8 @@ import styles from './Game.module.css'
 
 const boards: Record<Mode, React.ForwardRefExoticComponent<BoardProps & React.RefAttributes<BoardHandle>>> = {
   jigsaw: JigsawBoard,
-  swap: JigsawBoard,
-  sliding: JigsawBoard,
+  swap: SwapBoard,
+  sliding: SlidingBoard,
 }
 
 export interface ResultState {
