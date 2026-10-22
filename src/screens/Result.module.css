@@ -1,0 +1,16 @@
+.result {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 18px;
+  min-height: 100dvh;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+}
+
+.stars {
+  display: flex;
+  gap: 8px;
+}
