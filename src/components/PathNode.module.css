@@ -1,0 +1,123 @@
+.wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 72px;
+}
+
+.node {
+  --c: var(--node, var(--green));
+  --c-dark: var(--node-dark, var(--green-dark));
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 66px;
+  border: none;
+  border-radius: 50%;
+  background: var(--c);
+  color: #fff;
+  box-shadow: 0 7px 0 var(--c-dark);
+  cursor: pointer;
+  touch-action: manipulation;
+  margin-bottom: 7px;
+}
+
+.node:active:not(:disabled) {
+  transform: translateY(7px);
+  box-shadow: none;
+}
+
+.node:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 6px;
+}
+
+.locked {
+  --c: var(--locked);
+  --c-dark: var(--locked-dark);
+  color: var(--locked-dark);
+  cursor: not-allowed;
+}
+
+.completed {
+  --c: var(--gold);
+  --c-dark: var(--gold-dark);
+}
+
+.boss {
+  border-radius: 24px;
+}
+
+.boss.locked svg {
+  filter: grayscale(1) opacity(0.55);
+}
+
+.ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  border: 5px solid var(--c);
+  opacity: 0.6;
+  animation: pulse 1.6s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+.bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  padding: 8px 14px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--node, var(--green));
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  animation: bob 1.4s ease-in-out infinite;
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 12px;
+  height: 12px;
+  background: var(--bg);
+  border-right: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+  transform: translate(-50%, -6px) rotate(45deg);
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring,
+  .bubble {
+    animation: none;
+  }
+}
