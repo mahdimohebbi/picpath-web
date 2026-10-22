@@ -1,0 +1,30 @@
+# PicPath Web
+
+Offline-capable, mobile-first picture-puzzle PWA with a Duolingo-style level path.
+
+## Stack (do not deviate)
+Vite + React 18 + TypeScript strict · CSS modules + CSS variables (no UI lib) · Zustand (persist → localStorage) ·
+React Router (HashRouter) · vite-plugin-pwa · Vitest · Pointer Events for all input · DOM tiles with `background-position`.
+No backend, ads, analytics, or extra libraries unless essential.
+
+## Architecture
+- `src/theme.css` — tokens (colors, radius, shadows), dark mode via `prefers-color-scheme`
+- `src/components/` — DuoButton, PathNode, TopStats, Mascot, Confetti (one component per file + `.module.css`)
+- `src/screens/` — Path, Game, Result, Gallery, Profile
+- `src/game/` — pure engines, no React: `engine.ts` (types, stars, xp), `jigsaw.ts`, `swap.ts`, `sliding.ts`, `rng.ts`
+- `src/store/progress.ts` — Zustand persisted store (xp, stars, hearts, streak)
+- `src/data/levels.json` — 5 units × 6 levels; level 6 = boss
+- `public/puzzles/pNN.webp` — 30 images (picsum IDs in `CREDITS.md`)
+
+## Rules
+- Vite `base: '/picpath-web/'`; asset URLs via `import.meta.env.BASE_URL`.
+- After every step: `npm run build` and `npm test -- --run` pass, then Conventional Commit + `git push`.
+- Deploy: `.github/workflows/deploy.yml` → GitHub Pages on push to main.
+- Sliding shuffle = random legal moves from solved (always solvable).
+- Engines are unit-tested (shuffle solvability, win detection, stars).
+
+## Token efficiency
+- Don't re-read files just written; make targeted edits, not rewrites.
+- Run build/test quietly; show only error lines.
+- After each phase: 2–3 line summary + commit hash.
+- Ask the user only when blocked.
