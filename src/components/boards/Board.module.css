@@ -39,6 +39,19 @@
   position: relative;
   min-width: 0;
   min-height: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: default;
+}
+
+/* a piece is picked up: empty cells become targets */
+.targeting .empty {
+  cursor: pointer;
+}
+
+.targeting .empty:hover {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .empty {
@@ -72,8 +85,8 @@
   flex: none;
   display: flex;
   gap: 8px;
-  height: 80px;
-  padding: 6px 6px 10px 2px;
+  height: 92px;
+  padding: 12px 6px 10px 6px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
@@ -88,26 +101,31 @@
   overflow: hidden;
   background: var(--surface);
   box-shadow: 2px 2px 0 var(--shadow);
-  cursor: grab;
-  /* gestures handled in JS: horizontal swipe scrolls the tray, other drags lift the piece */
-  touch-action: none;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
   user-select: none;
+  transition:
+    transform 0.12s ease-out,
+    box-shadow 0.12s ease-out;
 }
 
-.lifted {
-  opacity: 0.25;
+.picked {
+  border-color: var(--edge);
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  transform: translateY(-6px);
+  box-shadow: 2px 8px 0 var(--shadow);
 }
 
-.ghost {
-  position: fixed;
-  z-index: 100;
-  pointer-events: none;
-  border: 2px solid var(--edge);
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 6px 6px 0 rgb(0 0 0 / 0.35);
-  transform: scale(1.06);
+.helper {
+  flex: none;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
 }
+
 
 .solo {
   flex: 1;

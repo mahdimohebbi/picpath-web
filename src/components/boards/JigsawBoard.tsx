@@ -1,5 +1,4 @@
-import { forwardRef, useImperativeHandle, useRef, useState, type PointerEvent } from 'react'
-import type { Rot } from '../../game/engine'
+import { forwardRef, useImperativeHandle, useRef, useState, type WheelEvent } from 'react'
 import {
   createJigsaw,
   isJigsawSolved,
@@ -14,31 +13,16 @@ import { PuzzleTile } from '../PuzzleTile'
 import styles from './Board.module.css'
 import type { BoardHandle, BoardProps } from './types'
 
-const DRAG_THRESHOLD = 8
-const LIFT_DISTANCE = 30
-
-interface Drag {
-  id: number
-  rot: Rot
-  x: number
-  y: number
-  size: number
-}
-
+/** Tap a tray piece to pick it up, then tap its cell. With rotation on, tap the picked piece again to turn it. */
 export const JigsawBoard = forwardRef<BoardHandle, BoardProps>(function JigsawBoard(
   { level, src, disabled, onMove, onProgress, onSolved },
   ref,
 ) {
   const n = level.grid
   const [state, setState] = useState(() => createJigsaw(n, level.rotation))
-  const [drag, setDrag] = useState<Drag | null>(null)
+  const [selected, setSelected] = useState<number | null>(null)
   const [flash, setFlash] = useState<{ cell: number; ok: boolean; key: number } | null>(null)
-  const boardRef = useRef<HTMLDivElement>(null)
   const trayRef = useRef<HTMLDivElement>(null)
-  /** pending until the gesture direction is known: mostly-horizontal scrolls the tray, anything else drags. */
-  const press = useRef<{ id: number; x: number; y: number; scroll: number; mode: 'pending' | 'drag' | 'scroll' } | null>(
-    null,
-  )
 
   function commit(next: JigsawState) {
     setState(next)
@@ -50,126 +34,99 @@ export const JigsawBoard = forwardRef<BoardHandle, BoardProps>(function JigsawBo
     hint() {
       const r = jigsawHint(state)
       if (!r) return false
+      if (selected === r.cell) setSelected(null)
       setFlash({ cell: r.cell, ok: true, key: Date.now() })
       commit(r.state)
       return true
     },
   }))
 
-  function cellAt(x: number, y: number): number | null {
-    const rect = boardRef.current?.getBoundingClientRect()
-    if (!rect || x < rect.left || y < rect.top || x >= rect.right || y >= rect.bottom) return null
-    const col = Math.floor(((x - rect.left) / rect.width) * n)
-    const row = Math.floor(((y - rect.top) / rect.height) * n)
-    return row * n + col
-  }
-
-  function onDown(e: PointerEvent<HTMLDivElement>, id: number) {
-    if (disabled || !e.isPrimary) return
-    e.currentTarget.setPointerCapture(e.pointerId)
-    press.current = { id, x: e.clientX, y: e.clientY, scroll: trayRef.current?.scrollLeft ?? 0, mode: 'pending' }
-  }
-
-  function onMovePtr(e: PointerEvent<HTMLDivElement>) {
-    const p = press.current
-    if (!p) return
-    const dx = e.clientX - p.x
-    const dy = e.clientY - p.y
-    if (p.mode === 'pending') {
-      if (Math.hypot(dx, dy) < DRAG_THRESHOLD) return
-      p.mode = Math.abs(dx) > 3 * Math.abs(dy) ? 'scroll' : 'drag'
-    }
-    // Pulling up out of the tray turns a scroll into a drag.
-    if (p.mode === 'scroll' && dy < -LIFT_DISTANCE) p.mode = 'drag'
-    if (p.mode === 'scroll') {
-      if (trayRef.current) trayRef.current.scrollLeft = p.scroll - dx
+  function tapPiece(id: number) {
+    if (disabled) return
+    if (selected !== id) {
+      feedback('tap')
+      setSelected(id)
       return
     }
-    const size = (boardRef.current?.getBoundingClientRect().width ?? 320) / n
-    const tile = state.tray.find((t) => t.id === p.id)
-    setDrag({ id: p.id, rot: tile?.rot ?? 0, x: e.clientX, y: e.clientY, size })
+    if (level.rotation) {
+      onMove()
+      feedback('tap')
+      setState(rotateTrayPiece(state, id))
+    } else {
+      setSelected(null)
+    }
   }
 
-  function onUp(e: PointerEvent<HTMLDivElement>) {
-    const p = press.current
-    press.current = null
-    setDrag(null)
-    if (!p) return
-    if (p.mode === 'scroll') return
-    if (p.mode === 'pending') {
-      if (level.rotation) {
-        onMove()
-        feedback('tap')
-        setState(rotateTrayPiece(state, p.id))
-      }
-      return
-    }
-    const cell = cellAt(e.clientX, e.clientY)
-    if (cell === null) return
+  function tapCell(cell: number) {
+    if (disabled || selected === null || state.board[cell]) return
     onMove()
-    const next = placePiece(state, p.id, cell)
+    const next = placePiece(state, selected, cell)
     if (next === state) {
+      // keep the piece picked up so the player can try another cell
       setFlash({ cell, ok: false, key: Date.now() })
       feedback('wrong')
       return
     }
+    setSelected(null)
     setFlash({ cell, ok: true, key: Date.now() })
     feedback('snap')
     commit(next)
   }
 
-  function onCancel() {
-    press.current = null
-    setDrag(null)
+  // Mouse wheels scroll vertically; turn that into sideways tray scrolling on desktop.
+  function onWheel(e: WheelEvent<HTMLDivElement>) {
+    if (trayRef.current && Math.abs(e.deltaY) > Math.abs(e.deltaX)) trayRef.current.scrollLeft += e.deltaY
   }
 
   const solved = state.tray.length === 0
+  const picked = selected !== null
 
   return (
     <div className={styles.jigsaw}>
       <div className={styles.boardWrap}>
         <div
-          ref={boardRef}
-          className={`${styles.board} ${solved ? styles.solved : ''}`}
+          className={`${styles.board} ${solved ? styles.solved : ''} ${picked ? styles.targeting : ''}`}
           style={{ gridTemplateColumns: `repeat(${n}, 1fr)` }}
         >
           {state.board.map((t, i) => (
-            <div
+            <button
               key={flash?.cell === i ? `${i}-${flash.key}` : i}
+              type="button"
+              data-cell={i}
               className={`${styles.cell} ${t ? '' : styles.empty} ${
                 flash?.cell === i ? (flash.ok ? styles.pop : styles.wrong) : ''
               }`}
+              onClick={() => tapCell(i)}
+              disabled={!!t || disabled}
+              aria-label={t ? `Cell ${i + 1}, filled` : `Cell ${i + 1}`}
             >
               {t && <PuzzleTile src={src} n={n} id={t.id} />}
-            </div>
+            </button>
           ))}
         </div>
       </div>
-      <div ref={trayRef} className={styles.tray} aria-label="Pieces">
+      <p className={styles.helper} aria-live="polite">
+        {picked
+          ? level.rotation
+            ? 'Tap a cell to place it · tap the piece again to turn it'
+            : 'Now tap the cell where it belongs'
+          : 'Tap a piece to pick it up'}
+      </p>
+      <div ref={trayRef} className={styles.tray} aria-label="Pieces" onWheel={onWheel}>
         {state.tray.map((t) => (
-          <div
+          <button
             key={t.id}
+            type="button"
             data-id={t.id}
-            className={`${styles.piece} ${drag?.id === t.id ? styles.lifted : ''}`}
-            onPointerDown={(e) => onDown(e, t.id)}
-            onPointerMove={onMovePtr}
-            onPointerUp={onUp}
-            onPointerCancel={onCancel}
-            role="button"
-            aria-label={level.rotation ? 'Piece: drag to place, tap to rotate' : 'Piece: drag to place'}
+            className={`${styles.piece} ${selected === t.id ? styles.picked : ''}`}
+            onClick={() => tapPiece(t.id)}
+            aria-pressed={selected === t.id}
+            aria-label={level.rotation ? 'Piece: tap to pick up, tap again to rotate' : 'Piece: tap to pick up'}
           >
             <PuzzleTile src={src} n={n} id={t.id} rot={t.rot} />
-          </div>
+          </button>
         ))}
       </div>
-      {drag && (
-        <div
-          className={styles.ghost}
-          style={{ width: drag.size, height: drag.size, left: drag.x - drag.size / 2, top: drag.y - drag.size / 2 }}
-        >
-          <PuzzleTile src={src} n={n} id={drag.id} rot={drag.rot} />
-        </div>
-      )}
     </div>
   )
 })

@@ -4,7 +4,7 @@ Offline-capable, mobile-first picture-puzzle PWA with a Duolingo-style level pat
 
 ## Stack (do not deviate)
 Vite + React 18 + TypeScript strict · CSS modules + CSS variables (no UI lib) · Zustand (persist → localStorage) ·
-React Router (HashRouter) · vite-plugin-pwa · Vitest · Pointer Events for all input · DOM tiles with `background-position`.
+React Router (HashRouter) · vite-plugin-pwa · Vitest · tap-to-select input everywhere (jigsaw: tap piece, then tap cell; no drag) · DOM tiles with `background-position`.
 No backend, ads, analytics, or extra libraries unless essential.
 
 ## Architecture
