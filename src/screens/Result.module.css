@@ -1,16 +1,143 @@
 .result {
-  display: grid;
-  justify-items: center;
-  align-content: center;
-  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   min-height: 100dvh;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 24px;
+  padding: calc(24px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom));
   text-align: center;
+}
+
+.hero {
+  position: relative;
+  margin-bottom: 8px;
+  animation: zoom 0.5s cubic-bezier(0.3, 1.5, 0.6, 1) both;
+}
+
+.picture {
+  display: block;
+  width: min(56vw, 220px);
+  aspect-ratio: 1;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px var(--gold), 0 8px 0 4px var(--gold-dark);
+}
+
+.mascot {
+  position: absolute;
+  right: -40px;
+  bottom: -26px;
+}
+
+.title {
+  font-size: 28px;
+  color: var(--gold-dark);
 }
 
 .stars {
   display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.star {
+  display: inline-flex;
+  animation: starPop 0.45s cubic-bezier(0.3, 1.8, 0.5, 1) both;
+}
+
+.star:nth-child(2) {
+  transform: translateY(-8px);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.card {
+  display: grid;
+  border: 2px solid;
+  border-radius: 14px;
+  overflow: hidden;
+  animation: rise 0.35s ease-out 1.2s both;
+}
+
+.card small {
+  padding: 4px 0;
+  color: #fff;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card strong {
+  padding: 10px 0;
+  border-radius: 10px 10px 0 0;
+  background: var(--bg);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.streak {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--orange);
+  font-size: 18px;
+  font-weight: 800;
+  animation: rise 0.35s ease-out 1.5s both;
+}
+
+.actions {
+  display: grid;
   gap: 8px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+@keyframes starPop {
+  0% {
+    opacity: 0;
+    scale: 0.2;
+    rotate: -30deg;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+@keyframes zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .star,
+  .card,
+  .streak {
+    animation: none;
+  }
 }

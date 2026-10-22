@@ -34,7 +34,7 @@ export function Mascot({ mood = 'happy', size = 96, className }: Props) {
       ) : (
         <>
           <path d="M42 74q8-7 16 0" fill="none" stroke="#3c3c3c" strokeWidth="3" strokeLinecap="round" />
-          <path d="M31 45l12 4M69 45l-12 4" stroke="#3c3c3c" strokeWidth="3" strokeLinecap="round" />
+          <path d="M31 49l12-5M69 49l-12-5" stroke="#3c3c3c" strokeWidth="3" strokeLinecap="round" />
           <path d="M33 62q-2 5 0 7q2-2 0-7z" fill="#7fd4ff" />
         </>
       )}

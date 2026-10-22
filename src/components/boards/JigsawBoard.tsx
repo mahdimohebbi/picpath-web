@@ -15,6 +15,7 @@ import styles from './Board.module.css'
 import type { BoardHandle, BoardProps } from './types'
 
 const DRAG_THRESHOLD = 8
+const LIFT_DISTANCE = 30
 
 interface Drag {
   id: number
@@ -76,8 +77,10 @@ export const JigsawBoard = forwardRef<BoardHandle, BoardProps>(function JigsawBo
     const dy = e.clientY - p.y
     if (p.mode === 'pending') {
       if (Math.hypot(dx, dy) < DRAG_THRESHOLD) return
-      p.mode = Math.abs(dx) > 2 * Math.abs(dy) ? 'scroll' : 'drag'
+      p.mode = Math.abs(dx) > 3 * Math.abs(dy) ? 'scroll' : 'drag'
     }
+    // Pulling up out of the tray turns a scroll into a drag.
+    if (p.mode === 'scroll' && dy < -LIFT_DISTANCE) p.mode = 'drag'
     if (p.mode === 'scroll') {
       if (trayRef.current) trayRef.current.scrollLeft = p.scroll - dx
       return

@@ -28,6 +28,9 @@ export interface ResultState {
   seconds: number
   hints: number
   firstClear: boolean
+  streak: number
+  /** True when this win extended the streak (first win today). */
+  streakUp: boolean
 }
 
 export function Game() {
@@ -83,9 +86,11 @@ function Play({ level, onRetry }: { level: Level; onRetry: () => void }) {
     const s = finalStats.current
     const stars = computeStars(level, s)
     const xp = computeXp(stars, level.boss)
-    const firstClear = !useProgress.getState().stars[level.id]
+    const before = useProgress.getState()
+    const firstClear = !before.stars[level.id]
     completeLevel(level.id, stars, xp)
-    const result: ResultState = { stars, xp, firstClear, ...s }
+    const after = useProgress.getState()
+    const result: ResultState = { stars, xp, firstClear, streak: after.streak, streakUp: after.lastDay !== before.lastDay, ...s }
     setTimeout(() => navigate(`/result/${level.id}`, { replace: true, state: result }), 900)
   }, [level, completeLevel, navigate])
 
