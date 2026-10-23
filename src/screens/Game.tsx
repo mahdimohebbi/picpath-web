@@ -105,7 +105,7 @@ function Play({ level, onRetry }: { level: Level; onRetry: () => void }) {
   if (blocked) {
     return (
       <div className={styles.overlayPage}>
-        <Mascot mood="sad" size={120} />
+        <Mascot mood="sleepy" size={130} />
         <h2>Out of hearts</h2>
         <p className={styles.muted}>
           This level has a {level.limit?.time ? 'time' : 'move'} limit. Next heart in{' '}

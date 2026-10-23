@@ -90,7 +90,7 @@ export function Path() {
                 })}
               </div>
               {/* sits left, opposite the path's rightward bulge */}
-              <Mascot className={styles.mascot} mood="happy" size={84} />
+              <Mascot className={styles.mascot} mood="happy" size={100} />
             </div>
           </section>
         )

@@ -32,7 +32,7 @@ function ResultView({ levelId, boss, image, result }: { levelId: number; boss: b
       <Confetti />
       <div className={styles.hero}>
         <img className={styles.picture} src={imageUrl(image)} alt="Completed picture" />
-        <Mascot className={styles.mascot} mood="happy" size={86} />
+        <Mascot className={styles.mascot} mood="cheer" size={96} />
       </div>
 
       <h1 className={styles.title}>{last ? 'You finished PicPath!' : title}</h1>

@@ -1,0 +1,107 @@
+.body,
+.eyes,
+.sparkles,
+.zzz {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+/* idle: gentle bounce + blink */
+.happy .body {
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+.happy .eyes,
+.sad .eyes {
+  transform-origin: center;
+  animation: blink 4.5s infinite;
+}
+
+.cheer .body {
+  animation: hop 0.9s cubic-bezier(0.3, 0, 0.4, 1) infinite;
+}
+
+.cheer .sparkles {
+  transform-origin: center;
+  animation: twinkle 0.9s ease-in-out infinite alternate;
+}
+
+.sad .body {
+  animation: droop 3.2s ease-in-out infinite;
+}
+
+.sleepy .body {
+  animation: breathe 3.6s ease-in-out infinite;
+}
+
+.sleepy .zzz {
+  animation: drift 3.6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-3px) scaleY(1.02);
+  }
+}
+
+@keyframes blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes hop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.03, 0.97);
+  }
+  40% {
+    transform: translateY(-9px) scale(0.98, 1.03);
+  }
+}
+
+@keyframes twinkle {
+  to {
+    transform: scale(1.25) rotate(20deg);
+  }
+}
+
+@keyframes droop {
+  50% {
+    transform: rotate(-3deg) translateY(1px);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1.02, 0.98);
+  }
+}
+
+@keyframes drift {
+  0% {
+    opacity: 0;
+    transform: translate(-4px, 4px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(4px, -6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .body,
+  .eyes,
+  .sparkles,
+  .zzz {
+    animation: none !important;
+  }
+}
