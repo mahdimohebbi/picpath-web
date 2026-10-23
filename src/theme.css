@@ -42,8 +42,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Theme: no data-theme = follow the device; Profile can force light or dark. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #17131f;
     --surface: #221c2e;
     --surface-2: #2b2439;
@@ -55,6 +56,24 @@
     --locked: #2e2740;
     --locked-deep: #4b4260;
   }
+}
+
+:root[data-theme='dark'] {
+  --bg: #17131f;
+  --surface: #221c2e;
+  --surface-2: #2b2439;
+  --line: #3b334b;
+  --edge: #e9dfcf;
+  --shadow: rgb(233 223 207 / 0.35);
+  --text: #f6eee2;
+  --text-muted: #a69db6;
+  --locked: #2e2740;
+  --locked-deep: #4b4260;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
 }
 
 *,

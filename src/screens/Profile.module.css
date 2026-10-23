@@ -137,3 +137,37 @@
 .credits a {
   color: var(--accent);
 }
+
+.gap {
+  margin-top: 12px;
+}
+
+.segment {
+  display: flex;
+  padding: 3px;
+  border: 2px solid var(--edge);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.segment button {
+  padding: 6px 12px;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  background: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.segment .segOn {
+  border-color: var(--edge);
+  background: var(--star);
+  color: var(--on-color);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.segment button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}

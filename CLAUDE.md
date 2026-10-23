@@ -8,7 +8,7 @@ React Router (HashRouter) · vite-plugin-pwa · Vitest · tap-to-select input ev
 No backend, ads, analytics, or extra libraries unless essential.
 
 ## Architecture
-- `src/theme.css` — "sticker & ink" tokens: role colors (`--primary` coral, `--accent` teal, `--star`, `--danger`), `--edge`/`--shadow` + `--outline`/`--pop`; dark mode via `prefers-color-scheme`. Font: Fredoka. Keep it visually distinct from Duolingo
+- `src/theme.css` — "sticker & ink" tokens: role colors (`--primary` coral, `--accent` teal, `--star`, `--danger`), `--edge`/`--shadow` + `--outline`/`--pop`; dark tokens apply via `prefers-color-scheme` unless `<html data-theme>` forces light/dark (Profile → Theme, `src/lib/theme.ts`). Font: Fredoka. Keep it visually distinct from Duolingo
 - `src/components/` — PopButton, PathNode, TopStats, Mascot, Confetti, Shell, BottomNav, Icons (file + `.module.css`)
 - `src/components/boards/` — JigsawBoard, SwapBoard, SlidingBoard; share `BoardProps`/`BoardHandle` (hint)
 - `src/lib/` — feedback (sound + vibrate), sound (WebAudio synth), useImage, useCountUp

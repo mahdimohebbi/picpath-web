@@ -22,3 +22,17 @@ describe('progress store', () => {
     expect(useProgress.getState().stars[1]).toBe(3)
   })
 })
+
+describe('settings', () => {
+  it('keeps theme and sound through a progress reset', () => {
+    const s = useProgress.getState()
+    s.setTheme('dark')
+    s.toggleSound()
+    s.completeLevel(1, 3, 25)
+    useProgress.getState().reset()
+    const after = useProgress.getState()
+    expect(after.theme).toBe('dark')
+    expect(after.sound).toBe(false)
+    expect(after.stars).toEqual({})
+  })
+})

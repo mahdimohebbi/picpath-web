@@ -2,6 +2,8 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { MAX_HEARTS, bumpStreak, dayKey, loseHeart, regenHearts } from './meta'
 
+export type Theme = 'system' | 'light' | 'dark'
+
 interface ProgressState {
   /** Best stars per completed level id. */
   stars: Record<number, number>
@@ -11,10 +13,12 @@ interface ProgressState {
   streak: number
   lastDay: string | null
   sound: boolean
+  theme: Theme
   completeLevel: (id: number, stars: number, xp: number) => void
   failLevel: () => void
   syncHearts: () => void
   toggleSound: () => void
+  setTheme: (theme: Theme) => void
   reset: () => void
 }
 
@@ -26,6 +30,7 @@ const initial = () => ({
   streak: 0,
   lastDay: null,
   sound: true,
+  theme: 'system' as Theme,
 })
 
 export const useProgress = create<ProgressState>()(
@@ -50,7 +55,9 @@ export const useProgress = create<ProgressState>()(
           return next === s ? s : next
         }),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
-      reset: () => set(initial()),
+      setTheme: (theme) => set({ theme }),
+      // Settings survive a progress reset.
+      reset: () => set((s) => ({ ...initial(), sound: s.sound, theme: s.theme })),
     }),
     { name: 'picpath-progress', version: 1 },
   ),

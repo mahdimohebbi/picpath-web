@@ -4,11 +4,17 @@ import { FlameIcon, HeartIcon, PuzzleIcon, StarIcon, XpIcon } from '../component
 import { Mascot } from '../components/Mascot'
 import { levels } from '../data/levels'
 import { dayKey, visibleStreak } from '../store/meta'
-import { useProgress } from '../store/progress'
+import { useProgress, type Theme } from '../store/progress'
 import styles from './Profile.module.css'
 
+const THEMES: { value: Theme; label: string }[] = [
+  { value: 'system', label: 'Auto' },
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+]
+
 export function Profile() {
-  const { stars, xp, hearts, streak, lastDay, sound, toggleSound, reset } = useProgress()
+  const { stars, xp, hearts, streak, lastDay, sound, toggleSound, theme, setTheme, reset } = useProgress()
   const [confirm, setConfirm] = useState(false)
   const done = Object.keys(stars).length
   const totalStars = Object.values(stars).reduce((a, b) => a + b, 0)
@@ -33,7 +39,24 @@ export function Profile() {
       </div>
 
       <h2 className={styles.section}>Settings</h2>
-      <label className={styles.row}>
+      <div className={styles.row}>
+        <span id="theme-label">Theme</span>
+        <div className={styles.segment} role="radiogroup" aria-labelledby="theme-label">
+          {THEMES.map((t) => (
+            <button
+              key={t.value}
+              type="button"
+              role="radio"
+              aria-checked={theme === t.value}
+              className={theme === t.value ? styles.segOn : undefined}
+              onClick={() => setTheme(t.value)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <label className={`${styles.row} ${styles.gap}`}>
         <span>Sound effects</span>
         <input type="checkbox" role="switch" className={styles.switch} checked={sound} onChange={toggleSound} />
       </label>
